@@ -1,608 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ADVENTURE</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/responsive.css" />
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="img/apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="img/favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="img/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-    </head>
-    <body
-        onload='if (window.location.href.substr(window.location.href.length - 6) == "#about") { introAboutLogoTransition(); }'
-    >
-        <!--navbar-->
-        <nav class="navbar glass" style="height: 70px">
-            <span
-                ><a href="#home" style="display: flex; align-items: center"
-                    ><img
-                        class="img2"
-                        src="./img/mountain.png"
-                        width="40"
-                        style="margin: -25px -10px -25px -20px"
-                    />
-                    <h1 class="logo">&nbsp;ADVENTURE</h1></a
-                ></span
-            >
-            <ul class="nav-links">
-                <li>
-                    <a href="#home" id="pri" class="active cir_border">Home</a>
-                </li>
-                <li><a href="#events" id="sec" class="cir_border">Events</a></li>
-                <li>
-                    <a href="#explore" id="tri" class="cir_border">Explore</a>
-                </li>
-                <li>
-                    <a href="#tours" id="quad" class="cir_border">Tours</a>
-                </li>
-                <li><a href="#about" id="quint" class="cir_border">About</a></li>
-                <li>
-                    <a href="#contribution" id="hex" class="cir_border"
-                        >Contributions</a
-                    >
-                </li>
-                <li>
-                    <a href="#contact" id="hept" class="cir_border">Contact</a>
-                </li>
-                <li>
-                    <div>
-                        <input
-                            type="checkbox"
-                            class="checkbox dark"
-                            id="checkbox"
-                        />
-                        <label for="checkbox" class="label">
-                            <i class="fa fa-moon-o"></i>
-                            <i class="fa fa-sun-o"></i>
-                            <div class="ball"></div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ADVENTURE | Explore the World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+    <style>
+        /* Additional styles for Google Form button */
+        .google-form-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #fc036b, #d6025a);
+            color: white;
+            font-family: var(--ff-montserrat);
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(252, 3, 107, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .google-form-btn:hover {
+            background: linear-gradient(135deg, #ff1a73, #fc036b);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(252, 3, 107, 0.4);
+            color: white;
+        }
+        
+        .google-form-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-google {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: none;
+        }
+        
+        body.dark .contact-google {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-google p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #ddd;
+        }
+        
+        body.dark .contact-google p {
+            color: #555;
+        }
+        
+        .contact_us {
+            gap: 2rem;
+        }
+        
+        .cbox {
+            background: transparent;
+            border: none;
+        }
+        
+        @media (max-width: 850px) {
+            .contact_us {
+                flex-direction: column;
+            }
+            .google-form-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+        }
+
+        /* VIDEO BACKGROUND STYLES */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .video-background video.active {
+            opacity: 1;
+        }
+
+        /* REMOVE ALL RED UNDERLINES */
+        .line {
+            display: none !important;
+        }
+
+        /* REMOVE ALL BORDERS FROM EVERYTHING */
+        * {
+            border: none !important;
+        }
+
+        /* Modern Box Design - NO BORDERS AT ALL */
+        .header-content {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 35px 55px;
+            text-align: center;
+            box-shadow: none;
+            border: none !important;
+        }
+
+        #quote {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #fff, #FFD700, #fc036b);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 3s linear infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .ctn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 35px;
+            background: #fc036b;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none !important;
+        }
+
+        .ctn:hover {
+            background: white;
+            color: #fc036b;
+            transform: scale(1.05);
+        }
+
+        /* Make header background transparent */
+        header {
+            background: transparent !important;
+            position: relative;
+            z-index: 1;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ensure content is above video */
+        .navbar, section, footer {
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 12, 16, 0.85);
+            border: none !important;
+        }
+
+        .events, .tours, #about, #contact {
+            background: rgba(10, 12, 16, 0.9);
+            border: none !important;
+        }
+
+        .explore {
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 12, 16, 0.7);
+            border: none !important;
+        }
+
+        /* Remove borders from cards */
+        .card, .cform, .cbox, .c_boxx a, .contact-google {
+            border: none !important;
+            box-shadow: none;
+        }
+
+        .c_boxx a {
+            background: rgba(255, 255, 255, 0.1);
+            border: none !important;
+        }
+
+        .c_boxx a:hover {
+            background: #fc036b;
+        }
+
+        /* Remove border from navbar */
+        .navbar {
+            border: none !important;
+        }
+
+        /* Remove border from about section */
+        #about_us, .boxx, .containerx, .cards {
+            border: none !important;
+        }
+
+        /* ========== CONTACT SECTION - NEW DESIGN ========== */
+        /* Get in Touch heading - Gradient style */
+        .crow-message h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fc036b, #FFD700, #fc036b);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 3s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Prefer some other way heading - Same gradient style */
+        .cbox-message {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FFD700, #fc036b, #FFD700);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 3s linear infinite;
+            margin-bottom: 25px;
+        }
+
+        /* Contact cards hover effect */
+        .c_boxx a {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .c_boxx a:hover {
+            background: linear-gradient(135deg, #fc036b, #d6025a);
+            transform: translateX(8px);
+        }
+
+        .c_boxx a i {
+            color: #fc036b;
+            transition: all 0.3s ease;
+        }
+
+        .c_boxx a:hover i {
+            color: white;
+        }
+
+        .c_boxx a span, .c_boxx a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- VIDEO BACKGROUND - 6 VIDEOS WITH SMOOTH TRANSITION -->
+    <div class="video-background">
+        <video muted loop playsinline class="active" id="video1">
+            <source src="1.mp4" type="video/mp4">
+        </video>
+        <video muted loop playsinline id="video2">
+            <source src="2.mp4" type="video/mp4">
+        </video>
+        <video muted loop playsinline id="video3">
+            <source src="3.mp4" type="video/mp4">
+        </video>
+        <video muted loop playsinline id="video4">
+            <source src="4.mp4" type="video/mp4">
+        </video>
+        <video muted loop playsinline id="video5">
+            <source src="5.mp4" type="video/mp4">
+        </video>
+        <video muted loop playsinline id="video6">
+            <source src="6.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar glass">
+        <span>
+            <a href="#home" style="display: flex; align-items: center">
+                <img class="img2" src="./img/mountain.png" width="40" style="margin: -25px -10px -25px -20px" alt="logo" />
+                <h1 class="logo">&nbsp;ADVENTURE</h1>
+            </a>
+        </span>
+        <ul class="nav-links">
+            <li><a href="#home" id="pri" class="active cir_border">Home</a></li>
+            <li><a href="#events" id="sec" class="cir_border">Events</a></li>
+            <li><a href="#explore" id="tri" class="cir_border">Explore</a></li>
+            <li><a href="#tours" id="quad" class="cir_border">Tours</a></li>
+            <li><a href="#about" id="quint" class="cir_border">About</a></li>
+            <li><a href="#contact" id="hept" class="cir_border">Contact</a></li>
+            <li>
+                <div>
+                    <input type="checkbox" class="checkbox dark" id="checkbox" />
+                    <label for="checkbox" class="label">
+                        <i class="fa fa-moon-o"></i>
+                        <i class="fa fa-sun-o"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <img src="./img/menu-btn.png" alt="" class="menu-btn" />
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header id="home">
+        <div class="header-content">
+            <h2 id="quote">Explore the colourful World</h2>
+            <h1>A WONDERFUL GIFT</h1>
+            <a href="#about" class="ctn">Learn more</a>
+        </div>
+    </header>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="title">
+                <h1 class="dark">Upcoming Events</h1>
+            </div>
+            <div class="row">
+                <article class="card col">
+                    <img class="card-img" src="./img/img1.jfif" alt="Everest Camp Trek" />
+                    <h4 class="dark">Everest camp trek</h4>
+                    <p class="font-color">Everest base camp trek is without a doubt, one of the most renowned travel destinations in the world.</p>
+                    <a href="#" class="ctn">All Details</a>
+                </article>
+                <article class="card col">
+                    <img src="./img/img2.jfif" alt="Walking holidays" />
+                    <h4 class="dark">Walking holidays</h4>
+                    <p class="font-color">Join small guided group walks, enjoy a challenging trek, or a luxury private guided walk which can be made especially for you.</p>
+                    <a href="#" class="ctn">All Details</a>
+                </article>
+                <article class="card col">
+                    <img src="./img/img2.jfif" alt="Andaman Beaches" />
+                    <h4 class="dark">Andaman Beaches</h4>
+                    <p class="font-color">Diving in Andaman Beaches is exceptional. The coastal belt surroundings is one of the richest coral reef ecosystems in the world.</p>
+                    <a href="#" class="ctn">All Details</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Section -->
+    <section class="explore" id="explore">
+        <div class="explore-content">
+            <h1>EXPLORE THE WORLD</h1>
+            <p>"Travel makes one modest. You see what a tiny place you occupy in the world." – Gustav Flaubert <br />Exploring will make you want to pack your bag, book that ticket and jet away.</p>
+            <a href="#" class="ctn">Explore more</a>
+        </div>
+    </section>
+
+    <!-- Tours Section -->
+    <section class="tours" id="tours">
+        <div class="container row">
+            <div class="col content-col">
+                <h1 class="font-color">UPCOMING TOURS & DESTINATION</h1>
+                <p>
+                    Wed 28 sept 2023 : Port of Spain City Tour and Birdseye Fort View. <br />
+                    Sat 1 oct 2023 : Tour the Gasparee Caves.<br />
+                    Tues 4 oct 2023 : Trinidad North Coast Experience. <br />
+                    and many more ......
+                </p>
+                <a href="#" class="ctn">Learn more</a>
+            </div>
+            <div class="image-col">
+                <div class="image-gallery">
+                    <img src="./img/img3.png" alt="Tour destination" />
+                    <img src="./img/img4.png" alt="Tour destination" />
+                    <img src="./img/img5.png" alt="Tour destination" />
+                    <img src="./img/img6.png" alt="Tour destination" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="title">
+            <h1 class="font-color">About Us</h1>
+        </div>
+        <div id="about_us">
+            <div class="boxx">
+                <div class="containerx">
+                    <input type="radio" name="slider" id="item-1" checked />
+                    <input type="radio" name="slider" id="item-2" />
+                    <input type="radio" name="slider" id="item-3" />
+                    <div class="cards">
+                        <label class="cardt" for="item-1" id="col-img-1">
+                            <img src="./img/carousel-img4.jpg" alt="Adventure" />
+                        </label>
+                        <label class="cardt" for="item-2" id="col-img-2">
+                            <img src="./img/carousel-img5.jpg" alt="Nature" />
+                        </label>
+                        <label class="cardt" for="item-3" id="col-img-3">
+                            <img src="./img/carousel-img6.jpg" alt="Exploration" />
                         </label>
                     </div>
-                </li>
-            </ul>
-            <img src="./img/menu-btn.png" alt="" class="menu-btn" />
-        </nav>
-        <!--navbar-->
-
-        <header id="home">
-            <div class="header-content">
-                <h2 id="quote">Explore the colourful World</h2>
-                <div class="line"></div>
-                <h1>A WONDERFUL GIFT</h1>
-                <a
-                    href="#about"
-                    class="ctn"
-                    onclick='removeall(); $("#quad").css("border", "2px solid whitesmoke"); $("#quad").css("border-radius", "20px");'
-                    >Learn more</a
-                >
-            </div>
-        </header>
-
-        <!--Events-->
-        <section class="events" id="events">
-            <div class="container">
-                <div class="title">
-                    <h1 class="dark">Upcoming Events</h1>
-                    <div class="line"></div>
                 </div>
-                <div class="row">
-                    <article class="card col">
-                        <img class="card-img" src="./img/img1.jfif" />
-                        <h4 class="dark">Everest camp trek</h4>
-                        <p class="font-color">
-                            Everest base camp trek is without a doubt, one of
-                            the most renowned travel destinations in the world.
-                        </p>
-                        <a href="#" class="ctn">All Details</a>
-                    </article>
-                    <article class="card col">
-                        <img src="./img/img2.jfif" />
-                        <h4 class="dark">Walking holidays</h4>
-                        <p class="font-color">
-                            Join small guided group walks, enjoy a challenging
-                            trek, or a luxury private guided walk which can be
-                            made especially for you.
-                        </p>
-                        <a href="#" class="ctn">All Details</a>
-                    </article>
-                    <article class="card col">
-                        <img src="./img/img2.jfif" />
-                        <h4 class="dark">Andaman Beaches</h4>
-                        <p class="font-color">
-                            Diving in Andaman Beaches is exceptional. The costal
-                            belt surroundings is one of the richest coral reef
-                            ecosystems in the world.
-                        </p>
-                        <a href="#" class="ctn">All Details</a>
-                    </article>
-                </div>
+                <p>We are passionate about creating unforgettable adventures that connect people with nature, culture, and themselves. Our expert guides and carefully curated experiences ensure every journey is safe, enriching, and truly magical.</p>
             </div>
-        </section>
-        <!--Events-->
-
-        <!--Explore-->
-        <section class="explore" id="explore">
-            <div class="explore-content">
-                <h1>EXPLORE THE WORLD</h1>
-                <div class="line"></div>
-                <p>
-                    “Travel makes one modest. You see what a tiny place you
-                    occupy in the world.”– Gustav Flaubert <br />Exploring will
-                    make you want to pack your bag, book that ticket and jet
-                    away.
-                </p>
-                <a href="#" class="ctn">Explore more</a>
-            </div>
-        </section>
-        <!--Explore-->
-
-        <!--tours-->
-        <section class="tours" id="tours">
-            <div class="container row">
-                <div class="col content-col">
-                    <h1 class="font-color">UPCOMING TOURS & DESTINATION</h1>
-                    <div class="line"></div>
-                    <p>
-                        Wed 28 sept 2023 : Port of Spain City Tour and Birdseye
-                        Fort View. <br />
-                        Sat 1 oct 2023 : Tour the Gasparee Caves.<br />
-                        Tues 4 oct 2023 : Trinidad North Coast Experience.
-                        <br />
-                        and many more ......
-                    </p>
-                    <a href="#" class="ctn">Learn more</a>
-                </div>
-                <div class="image-col">
-                    <div class="image-gallery">
-                        <img src="./img/img3.png" alt="" />
-                        <img src="./img/img4.png" alt="" />
-                        <img src="./img/img5.png" alt="" />
-                        <img src="./img/img6.png" alt="" />
-                    </div>
-                </div>
-            </div>
-            <br /><br /><br /><br />
-        </section>
-        <!--tours-->
-
-        <!-- About -->
-        <section id="about">
-            <div class="title">
-                <h1 class="font-color">About Us</h1>
-                <div class="line"></div>
-            </div>
-            <br />
-            <div id="about_us">
-                <div class="boxx">
-                    <div class="containerx">
-                        <input type="radio" name="slider" id="item-1" checked />
-                        <input type="radio" name="slider" id="item-2" />
-                        <input type="radio" name="slider" id="item-3" />
-                        <div class="cards">
-                            <label class="cardt" for="item-1" id="col-img-1">
-                                <img src="./img/carousel-img4.jpg" />
-                            </label>
-                            <label class="cardt" for="item-2" id="col-img-2">
-                                <img src="./img/carousel-img5.jpg" />
-                            </label>
-                            <label class="cardt" for="item-3" id="col-img-3">
-                                <img src="./img/carousel-img6.jpg" />
-                            </label>
-                            
-                        </div>
-                    </div>
-                    <span id="about-quad"
-                        ><a href="#home"
-                            ><center>
-                                <h1
-                                    style="
-                                        font-family: var(--ff-montserrat);
-                                        color: white;
-                                    "
-                                >
-                                    Find that
-                                </h1>
-                                <br />
-                                <img
-                                    class="img2"
-                                    src="./img/mountain_dark.jpg"
-                                    width="200"
-                                    style="border-radius: 12%"
-                                />
-                                <br />
-                                <h1 class="logo" style="font-size: 50px">
-                                    ADVENTURE
-                                </h1>
-                            </center>
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </section>
-        <!-- About -->
-
-        <!-- Contributions -->
-        <div class="title">
-            <h1 class="font-color">Contributors</h1>
-            <div class="line"></div>
         </div>
-        <section class="contributors" id="contribution">
-            <div class="concard">
-                <img
-                    src="https://github.com/PritamSarbajna.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Pritam Sarbajna</h1>
+    </section>
+
+    <!-- Contact Section - Google Form Integration -->
+    <section id="contact">
+        <div class="title">
+            <h1 class="font-color">Contact Us</h1>
+        </div>
+        <div class="contact_us">
+            <!-- Google Form Button Area -->
+            <div class="cform" style="text-align: center; flex: 1;">
+                <div class="crow-message">
+                    <h1>✨ Get in Touch ✨</h1>
                 </div>
-                <div class="logolink">
-                    <a href="https://github.com/PritamSarbajna" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
+                <div class="contact-google">
+                    <p>📋 Fill out our quick inquiry form. We'll get back to you within 24 hours!</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScabG_dpqdJ9HAt5_UHR-SfVUpIQzG5uF-PLK8cCHiIva97YQ/viewform?usp=publish-editor" 
+                       class="google-form-btn" 
+                       target="_blank"
+                       id="googleFormBtn">
+                        <i class="fa fa-google"></i> Fill Google Form →
+                    </a>
+                    <p style="font-size: 0.85rem; margin-top: 1.2rem; opacity: 0.8;">✨ After submitting, you'll be redirected back here</p>
                 </div>
             </div>
-
-
-            <div class="concard">
-                <img
-                    src="https://github.com/athar-ansari.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>ATHAR ANSARI</h1>
+            
+            <!-- Contact Details Box -->
+            <div class="cbox">
+                <div>
+                    <p class="cbox-message">💫 Prefer some other way?<br />Reach us directly:</p>
                 </div>
-                <div class="logolink">
-                    <a href="https://github.com/athar-ansari" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
+                <div class="c_boxx">
+                    <a href="mailto:tourism@adventure.com">
+                        <i class="fa fa-envelope"></i>
+                        <span>tourism@adventure.com</span>
+                    </a>
                 </div>
-            </div>
-
-            <div class="concard">
-                <img
-                    src="https://github.com/prakhartiwari0.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Prakhar Tiwari</h1>
+                <div class="c_boxx">
+                    <a href="tel:+918763234891">
+                        <i class="fa fa-phone"></i>
+                        <span>(+91) 8763234891</span>
+                    </a>
                 </div>
-                <div class="logolink">
-                    <a href="https://github.com/prakhartiwari0" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
+                <div class="c_boxx">
+                    <a href="#">
+                        <i class="fa fa-map-marker"></i>
+                        <span>DSU, Trichy, India</span>
+                    </a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="concard">
-                <img
-                    src="https://github.com/hassana123.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Hassana Abdullahi</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/hassana123" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
+    <!-- Scroll to Top Button -->
+    <i class="arrow" onclick="topFunction()" id="upbtn"></i>
 
-            <div class="concard">
-                <img
-                    src="https://github.com/JumaCodes.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Olumese Steve-John</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/JumaCodes" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
+    <!-- Footer -->
+    <section class="footer">
+        <span>Created By Adventure Team | © 2026 All rights reserved.</span>
+    </section>
 
-            <div class="concard">
-                <img
-                    src="https://github.com/lubnafathima.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Lubna Fathima N</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/lubnafathima" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // ========== VIDEO CAROUSEL - AUTOMATIC WITH SMOOTH TRANSITIONS ==========
+        const videos = [
+            document.getElementById('video1'),
+            document.getElementById('video2'),
+            document.getElementById('video3'),
+            document.getElementById('video4'),
+            document.getElementById('video5'),
+            document.getElementById('video6')
+        ];
+        
+        let currentVideoIndex = 0;
+        let videoInterval;
+        
+        // Function to switch video smoothly
+        function switchVideo(index) {
+            if (index === currentVideoIndex) return;
+            
+            // Remove active class from all videos
+            videos.forEach((video, i) => {
+                video.classList.remove('active');
+            });
+            
+            // Add active class to new video
+            videos[index].classList.add('active');
+            videos[index].currentTime = 0;
+            
+            // Play the video
+            videos[index].play().catch(e => console.log(""));
+            
+            currentVideoIndex = index;
+        }
+        
+        // Function to go to next video
+        function nextVideo() {
+            let nextIndex = (currentVideoIndex + 1) % videos.length;
+            switchVideo(nextIndex);
+        }
+        
+        // Function to start the video carousel
+        function startVideoCarousel() {
+            // Start playing first video
+            videos[0].play().catch(e => console.log("Click anywhere to start videos"));
+            
+            // Change video every 2 seconds
+            videoInterval = setInterval(nextVideo, 2000);
+        }
+        
+        // Handle user interaction for browsers that block autoplay
+        function handleUserInteraction() {
+            if (videos[0] && videos[0].paused) {
+                videos.forEach(video => {
+                    video.play().catch(e => console.log(""));
+                });
+            }
+        }
+        
+        // Add event listeners
+        document.body.addEventListener('click', handleUserInteraction);
+        document.body.addEventListener('touchstart', handleUserInteraction);
+        
+        // Mute all videos for autoplay
+        videos.forEach(video => {
+            video.muted = true;
+            video.load();
+        });
+        
+        // Start carousel when page loads
+        window.addEventListener('load', () => {
+            setTimeout(startVideoCarousel, 500);
+        });
 
-            <div class="concard">
-                <img
-                    src="https://github.com/allanlalangan.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Allan</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/allanlalangan" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
-
-            <div class="concard">
-                <img
-                    src="https://github.com/Seyi-Ojo.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Mayowa Ojo</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/Seyi-Ojo" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
-
-            <div class="concard">
-                <img
-                    src="https://github.com/AmitBarman99.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Amit Barman</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/AmitBarman99" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
-
-            <div class="concard">
-                <img
-                    src="https://github.com/ppdTurja.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Partha Turja</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/ppdTurja" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
-
-            <div class="concard">
-                <img
-                    src="https://github.com/Brainiac-M.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Mahmood Ademoye</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/Brainiac-M" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
-
-            <div class="concard">
-                <img
-                    src="https://github.com/abitsalihu.png"
-                    alt="profile-picture"
-                    class="pfp"
-                />
-                <div class="text">
-                    <h1>Abit Salihu</h1>
-                </div>
-                <div class="logolink">
-                    <a href="https://github.com/abitsalihu" target="_blank"
-                        ><img
-                            src="img/GitHub120px.png"
-                            alt="Github-Logo"
-                            class="github-logo"
-                    /></a>
-                </div>
-            </div>
-        </section>
-        <!-- Contributions -->
-
-        <!-- contact -->
-        <section id="contact">
-            <div class="title">
-                <h1 class="font-color">Contact Us</h1>
-                <div class="line"></div>
-            </div>
-            <div class="contact_us">
-                <form class="cform" action="" method="post">
-                    <div class="crow-message">
-                        <h1 class="color">Send us a message</h1>
-                        <div></div>
-                    </div>
-                    <div class="crow-in">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Your name"
-                        />
-                        <input
-                            type="text"
-                            id="email"
-                            name="email"
-                            placeholder="Your Email id"
-                        />
-                    </div>
-                    <div class="crow">
-                        <div class="ccol-left">
-                            <select name="country" id="country">
-                                <option value="India">India</option>
-                                <option value="Russia">Russia</option>
-                                <option value="usa">USA</option>
-                                <option value="Japan">Japan</option>
-                                <option value="France">France</option>
-                                <option value="Brazil">Brazil</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="crow">
-                        <div class="ccol-left">
-                            <textarea
-                                type="text"
-                                id="remarks"
-                                name="remarks"
-                                placeholder="Your Remarks....."
-                                style="height: 150px"
-                            ></textarea>
-                        </div>
-                    </div>
-                    <input class="crow-s" type="submit" value="Submit" />
-                </form>
-                <div class="cbox">
-                    <div>
-                        <p class="cbox-message">
-                            Prefer some other way ?<br />Reach us by using the
-                            details given below
-                        </p>
-                        <div class="cbox-line"></div>
-                    </div>
-                    <div class="c_boxx">
-                        <a href="mailto:abc@gmail.com"
-                            ><i class="fa fa-envelope"></i>
-                            Mail: tourism@adventure.com
-                        </a>
-                    </div>
-                    <div class="c_boxx">
-                        <a href="tel:+91-12345-67890"
-                            ><i class="fa fa-phone"></i>
-                            Phone: (+91) 12345-67890
-                        </a>
-                    </div>
-                    <div class="c_boxx">
-                        <a href="#"
-                            ><i class="fa fa-map-marker"></i>
-                            Location: Kolkata,West Bengal,India
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- contact  -->
-        <!-- up scroll -->
-        <i class="arrow"  onclick="topFunction()" id="upbtn"></i>
-        <!-- end -->
-        <!--footer-->
-        <section class="footer">
-            <span
-                >Created By Pritam Sarbajna | &#169; 2022 All rights
-                reserved.</span
-            >
-            <div class="social">
-                <li>
-                    <a
-                        href="https://pritam-sarbajna-portfolio.netlify.app/"
-                        target="_blank"
-                        rel="noreferrer"
-                        ><i class="fa fa-globe"></i
-                    ></a>
-                    <a
-                        href="https://github.com/PritamSarbajna"
-                        target="_blank"
-                        rel="noreferrer"
-                        ><i class="fa fa-github"></i
-                    ></a>
-                    <a
-                        href="https://www.linkedin.com/in/pritam-sarbajna-74945821b/"
-                        target="_blank"
-                        rel="noreferrer"
-                        ><i class="fa fa-linkedin-square"></i
-                    ></a>
-                </li>
-            </div>
-        </section>
-        <!--footer-->
-
-        <script>
-            const menuBtn = document.querySelector(".menu-btn");
-            const navlinks = document.querySelector(".nav-links");
-
+        // Mobile menu toggle
+        const menuBtn = document.querySelector(".menu-btn");
+        const navlinks = document.querySelector(".nav-links");
+        if (menuBtn) {
             menuBtn.addEventListener("click", () => {
                 navlinks.classList.toggle("mobile-menu");
             });
-        </script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="js/script.js"></script>
-    </body>
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll(".nav-links li a").forEach(link => {
+            link.addEventListener("click", () => {
+                navlinks.classList.remove("mobile-menu");
+            });
+        });
+
+        // Google Form Handler
+        const googleBtn = document.getElementById('googleFormBtn');
+        
+        if (googleBtn) {
+            googleBtn.addEventListener('click', function(e) {
+                localStorage.setItem('googleFormOpened', 'true');
+            });
+        }
+        
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                const formWasOpened = localStorage.getItem('googleFormOpened');
+                if (formWasOpened === 'true') {
+                    showThankYouNotification();
+                    localStorage.removeItem('googleFormOpened');
+                }
+            }
+        });
+        
+        function showThankYouNotification() {
+            const notif = document.createElement('div');
+            notif.innerHTML = `
+                <div style="position: fixed; bottom: 30px; right: 30px; background: #fc036b; color: white; padding: 15px 25px; border-radius: 50px; z-index: 9999; font-family: 'Montserrat', sans-serif; font-weight: bold; box-shadow: 0 5px 20px rgba(0,0,0,0.3); animation: slideIn 0.3s ease;">
+                    ✅ Thank you! We'll contact you soon. 🏔️
+                </div>
+            `;
+            document.body.appendChild(notif);
+            setTimeout(() => {
+                notif.style.opacity = '0';
+                notif.style.transition = 'opacity 0.3s';
+                setTimeout(() => notif.remove(), 500);
+            }, 4000);
+        }
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
 </html>
